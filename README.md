@@ -1,22 +1,131 @@
-Task Manager API – Django REST Framework
+# 🚀 Task Manager API – Django REST Framework
 
-A complete Task Manager REST API built using Django REST Framework.
-This API supports:
+A complete **Task Manager REST API** that allows authenticated users to manage tasks securely.  
+This project includes **JWT Authentication**, CRUD operations, pagination, filtering, Swagger docs, and unit tests.
 
-User registration & login using JWT
+## 🧱 System Architecture Diagram
+```
+                   +---------------------------+
+                   |     Client / Frontend     |
+                   |  (Postman / Browser / UI) |
+                   +-------------+-------------+
+                                 |
+                                 v
+                     HTTP Requests (JSON API)
+                                 |
+                                 v
+        +------------------------------------------------+
+        |                Django REST API                 |
+        |------------------------------------------------|
+        |   URLs   |   Views   | Serializers |  Models   |
+        +------------------------------------------------+
+                                 |
+                                 v
+                       Business Logic Layer
+                                 |
+                                 v
+        +------------------------------------------------+
+        |                Permissions Layer               |
+        |  - JWT Authentication                           |
+        |  - Owner-based Access                           |
+        |  - Admin Privileges                             |
+        +------------------------------------------------+
+                                 |
+                                 v
+                     +---------------------------+
+                     |        SQLite DB          |
+                     |   Stores Users & Tasks    |
+                     +---------------------------+
+```
 
-Task creation, updating, deletion (CRUD)
+## 🔐 Authentication Workflow
+```
+User Registers/Login
+        |
+        v
+POST /auth/token  or  /auth/register
+        |
+        v
+JWT Token Returned
+        |
+        v
+Authorization: Bearer <token>
+        |
+        v
+Access Protected Endpoints
+```
 
-Pagination (5 tasks per page)
+## ⭐ 1. Project Description
+This API allows user registration, login, and full CRUD operations on tasks with secure JWT-based authentication. Features include pagination, filtering, custom permissions, and admin privileges.
 
-Filtering tasks by completion
+## ⚙️ 2. Setup Instructions
+### Activate Virtual Environment
+Windows:
+```
+venv\Scripts\activate
+```
+Mac/Linux:
+```
+source venv/bin/activate
+```
 
-Owner-based permissions (only owner can modify tasks)
+### Install Dependencies
+```
+pip install -r requirements.txt
+```
 
-Admin users can view all tasks
+### Run Migrations
+```
+python manage.py migrate
+```
 
-Swagger API documentation
+### Start Server
+```
+python manage.py runserver
+```
 
-Unit tests for API validation
+## 📌 3. API Endpoints
+### Authentication
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| POST | /auth/register/ | Register user |
+| POST | /auth/token/ | Login (JWT access + refresh) |
+| POST | /auth/token/refresh/ | Refresh JWT token |
 
-This project is structured for clean maintainability and follows standard backend development practices.
+### Tasks
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| GET | /tasks/ | List tasks |
+| POST | /tasks/ | Create task |
+| GET | /tasks/<id>/ | Get task |
+| PUT | /tasks/<id>/ | Update task |
+| DELETE | /tasks/<id>/ | Delete task |
+
+## 🔍 Filters & Pagination
+```
+/tasks/?page=2
+/tasks/?completed=true
+/tasks/?completed=false
+```
+
+## 📘 API Docs
+Swagger UI → http://127.0.0.1:8000/swagger/  
+ReDoc → http://127.0.0.1:8000/redoc/
+
+## 🧪 Tests
+```
+python manage.py test
+```
+
+## 📁 Project Structure
+```
+task-manager-api/
+│── taskmanager/
+│── tasks/
+│── manage.py
+│── requirements.txt
+│── .gitignore
+```
+
+## 👤 Author
+**Gorank Kansal**
