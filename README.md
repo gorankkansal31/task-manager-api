@@ -56,7 +56,28 @@ Access Protected Endpoints
 ```
 
 ## ⭐ 1. Project Description
-This API allows user registration, login, and full CRUD operations on tasks with secure JWT-based authentication. Features include pagination, filtering, custom permissions, and admin privileges.
+  ⭐ 1. Project Description
+
+This API provides functionality for:
+
+✔ User Registration & Login (JWT)
+
+✔ Creating, Reading, Updating, and Deleting tasks
+
+✔ Viewing ONLY tasks created by logged-in user
+
+✔ Advanced filtering (completed=true)
+
+✔ Pagination (5 tasks/page)
+
+✔ Swagger API documentation
+
+✔ Admin access for all tasks
+
+✔ Custom permissions to protect user data
+
+✔ Unit tests included
+
 
 ## ⚙️ 2. Setup Instructions
 ### Activate Virtual Environment
@@ -101,23 +122,54 @@ python manage.py runserver
 | PUT | /tasks/<id>/ | Update task |
 | DELETE | /tasks/<id>/ | Delete task |
 
-## 🔍 Filters & Pagination
+## 4. Filters & Pagination
 ```
 /tasks/?page=2
 /tasks/?completed=true
 /tasks/?completed=false
 ```
 
-## 📘 API Docs
+## 5. API Docs
 Swagger UI → http://127.0.0.1:8000/swagger/  
-ReDoc → http://127.0.0.1:8000/redoc/
 
-## 🧪 Tests
+Includes:
+
+All API routes
+
+Request/Response schema
+
+Live API testing
+
+JWT integration
+
+6. Permissions & Roles
+👤 Regular User
+
+Can create tasks
+
+See only their tasks
+
+Update only their tasks
+
+Delete only their tasks
+
+🛠 Admin User
+
+Can view all tasks
+
+Full system control
+
+
+## 7. Tests
 ```
 python manage.py test
-```
 
-## 📁 Project Structure
+Excepted Output``
+Ran X tests in Y seconds
+OK
+`
+
+## 8 Project Structure
 ```
 task-manager-api/
 │── taskmanager/
@@ -126,6 +178,20 @@ task-manager-api/
 │── requirements.txt
 │── .gitignore
 ```
+
+9. Technology Stack
+
+Python 3
+
+Django
+
+Django REST Framework
+
+JWT Authentication (SimpleJWT)
+
+SQLite
+
+Swagger Documentation
 
 ## 👤 Author
 **Gorank Kansal**
