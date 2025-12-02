@@ -1,126 +1,194 @@
-# 📝 Task Manager API – Django REST Framework
+⭐ Task Manager API – Django REST Framework
 
-A fully functional RESTful API for managing tasks, built using **Django REST Framework**.  
-This project supports CRUD operations, JWT authentication, pagination, filtering, user roles,  
-and complete API documentation using Swagger.
+A complete Task Manager REST API built using Django REST Framework.
+This API supports:
 
----
+User registration & login using JWT
 
-## ⭐ 1. Project Description
+Task creation, updating, deletion (CRUD)
 
-This API allows users to:
+Pagination (5 tasks per page)
 
-- Register & Login (JWT authentication)
-- Create, view, update & delete tasks
-- View ONLY their own tasks (except admin)
-- Filter tasks by completion status
-- Use paginated task lists (5 per page)
-- Access interactive API docs via Swagger & ReDoc
+Filtering tasks by completion
 
----
+Owner-based permissions (only owner can modify tasks)
 
-## 🚀 2. Setup & Run Instructions
+Admin users can view all tasks
 
-### 🔹 Step 1: Clone the Repository
-```bash
-git clone https://github.com/gorankkansal31/task-manager-api.git
-cd task-manager-api
+Swagger API documentation
 
-Step 2: Create Virtual Environment
-python -m venv venv
+Unit tests for API validation
 
+This project is structured for clean maintainability and follows standard backend development practices.
 
-Activate:
+🧩 1. Project Overview
 
-Windows
+This Task Manager API allows authenticated users to manage tasks.
+Each user can:
+
+Create tasks
+
+View their own tasks
+
+Update their own tasks
+
+Delete their own tasks
+
+Admin users can view all tasks globally.
+
+JWT tokens ensure secure, token-based authentication.
+
+⚙️ 2. Setup Instructions (No Clone Required)
+
+Follow these steps to run the project locally.
+
+✔ Step A: Activate Virtual Environment
+
+(Use your existing environment)
+
+Windows:
 
 venv\Scripts\activate
 
 
-Mac/Linux
+Mac/Linux:
 
 source venv/bin/activate
 
-🔹 Step 3: Install Dependencies
+✔ Step B: Install Dependencies
+
+Use the included requirements.txt:
+
 pip install -r requirements.txt
 
-🔹 Step 4: Run Migrations
+✔ Step C: Apply Migrations
 python manage.py migrate
 
-🔹 Step 5: Start Development Server
+✔ Step D: Start the Server
 python manage.py runserver
 
 
-API will be available at:
+Server runs on:
 👉 http://127.0.0.1:8000/
 
 📌 3. API Endpoints
-🔐 Authentication Endpoints
+🔐 Authentication (JWT)
 Method	Endpoint	Description
-POST	/auth/register/	Register new user
-POST	/auth/token/	Login (JWT Access + Refresh token)
+POST	/auth/register/	Register a new user
+POST	/auth/token/	Login (returns access & refresh tokens)
 POST	/auth/token/refresh/	Refresh access token
-🗂 Task Management Endpoints
+📝 Task Endpoints (CRUD)
 Method	Endpoint	Description
-GET	/tasks/	List all tasks (pagination + filters)
-POST	/tasks/	Create new task
-GET	/tasks/<id>/	Retrieve task
+GET	/tasks/	List all tasks (paginated & filtered)
+POST	/tasks/	Create a new task
+GET	/tasks/<id>/	Retrieve single task
 PUT	/tasks/<id>/	Update task
 DELETE	/tasks/<id>/	Delete task
-🔍 4. Filters & Pagination
+🔍 4. Pagination & Filtering
 ✔ Pagination
 
-Each page returns 5 tasks
-Example:
+Each page contains 5 tasks:
 
-/tasks/?page=2
+/tasks/?page=1
 
-✔ Filtering
+✔ Filter Tasks by Status
 
-Filter by completed status:
+Completed tasks:
 
 /tasks/?completed=true
+
+
+Pending tasks:
+
 /tasks/?completed=false
 
-📘 5. Swagger API Documentation
+📘 5. API Documentation (Swagger)
 
-Interactive documentation is available at:
+Interactive documentation available at:
 
-👉 Swagger UI: http://127.0.0.1:8000/swagger/
+👉 Swagger UI:
+http://127.0.0.1:8000/swagger/
 
+👉 ReDoc UI:
+http://127.0.0.1:8000/redoc/
 
+Includes:
 
-It includes:
+All API routes
 
-All API endpoints
+Request/response schemas
 
-Request & Response schemas
+Live testing environment
 
-Live API testing
+🔐 6. Permissions & Roles
+👤 Normal User
 
-🧪 6. Running Tests
+Can create tasks
 
-Run all unit tests:
+Can view only their own tasks
+
+Can update/delete only their tasks
+
+🛠 Admin User
+
+Can view ALL tasks
+
+Has access to admin panel
+
+Can manage all records
+
+This is enforced using custom permissions.
+
+🧪 7. Running Tests
+
+Run complete test suite:
 
 python manage.py test
 
 
-If successful:
+Expected output:
 
 Ran X tests in Y seconds
 OK
 
-👥 7. User Roles (Bonus)
 
-Admin users → Can view ALL tasks
+This validates:
 
-Normal users → Can view/update/delete ONLY their own tasks
+API behavior
 
-Enforced using custom permissions
+CRUD correctness
 
-⭐ 8. Tech Stack
+Authentication
 
-Python 3.12
+Permissions
+
+🧱 8. Project Structure
+task-manager-api/
+│
+├── taskmanager/
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── tasks/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── permissions.py
+│   ├── tests/
+│   └── migrations/
+│
+├── requirements.txt
+├── manage.py
+└── .gitignore
+
+
+The project follows clean modular architecture.
+
+🛠 9. Tech Stack
+
+Python 3
 
 Django
 
@@ -131,3 +199,12 @@ SimpleJWT
 SQLite
 
 Swagger (drf-yasg)
+
+👤 10. Author
+
+Gorank Kansal
+Backend Developer — Task Manager API Assignment
+
+
+
+
